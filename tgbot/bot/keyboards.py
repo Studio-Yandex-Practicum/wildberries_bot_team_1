@@ -62,6 +62,18 @@ def cancel_keyboard():
     return InlineKeyboardMarkup(keyboard)
 
 
+def go_back_stock_keyboard():
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                'Вернуться назад',
+                callback_data=callback.CALLBACK_RESIDUE_PARSER
+            )
+        ],
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+
 async def position_parse_keyboard(article: int, query: str):
     """Создание клавиатуры парсера позиций"""
     callback_update = await Callback.objects.acreate(
@@ -94,6 +106,12 @@ async def position_parse_keyboard(article: int, query: str):
                     callback_id=callback_update.pk
                 )
             ),
+        ],
+        [
+            InlineKeyboardButton(
+                'Отправить еще запрос',
+                callback_data=callback.CALLBACK_POSITION_PARSER
+            )
         ],
         [
             InlineKeyboardButton(

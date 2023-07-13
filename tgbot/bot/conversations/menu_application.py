@@ -50,7 +50,7 @@ async def position_parser_help_message(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE
 ):
-    """обработка вспомогательного сообщения парсера позиций"""
+    """Обработка вспомогательного сообщения парсера позиций"""
     reply_markup = keyboards.cancel_keyboard()
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -216,13 +216,15 @@ async def residue_parser(update: Update, context: ContextTypes.DEFAULT_TYPE):
             for size, count in sorted(residual_sizes.items())
         ]
     )
+    reply_markup = keyboards.go_back_stock_keyboard()
     response_text = text.RESIDUE_PARSER_MESSAGE.format(
         residue_in_storehouses=residue_in_storehouses_text,
         residual_sizes=residual_sizes_text
     )
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text=response_text
+        text=response_text,
+        reply_markup=reply_markup,
     )
 
 
