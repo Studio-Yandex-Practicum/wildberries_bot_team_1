@@ -70,9 +70,11 @@ async def position_parser(update: Update, context: ContextTypes.DEFAULT_TYPE):
         position=int(match.group(1))))
     response_text = "Invalid request"
     if match:
+        reply_markup = keyboards.send_again_stock_go_menu_keyboard()
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=text.PARSING_WAIT_MESSAGE
+            text=text.PARSING_WAIT_MESSAGE,
+            reply_markup=reply_markup,
         )
         article = int(match.group(1))
         query = match.group(2)
@@ -311,15 +313,17 @@ async def user_subscriptions(
         response_text = text.SUBSCRIPTIONS_MESSAGE.format(results=results)
     else:
         response_text = text.NO_SUBSCRIPTIONS_MESSAGE
+    reply_markup = keyboards.go_to_menu()
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text=response_text
+        text=response_text,
+        reply_markup=reply_markup,
     )
 
 
 @check_user_subscription
 async def export_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработка выгруски результатов"""
+    """Обработка выгрузки результатов"""
     match = re.match(
         callback.CALLBACK_EXPORT_RESULTS_PATTERN, update.callback_query.data
     )
@@ -339,7 +343,7 @@ async def unsubscribe(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE
 ):
-    """Обработка отписки на позицию"""
+    """Обработка отписки от позиции"""
     match = re.match(
         callback.CALLBACK_UNSUBSCRIBE_PATTERN,
         update.callback_query.data

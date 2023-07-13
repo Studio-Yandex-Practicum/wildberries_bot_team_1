@@ -62,6 +62,18 @@ def cancel_keyboard():
     return InlineKeyboardMarkup(keyboard)
 
 
+def go_to_menu():
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                'Вернуться в меню',
+                callback_data=callback.CALLBACK_CANCEL
+            ),
+        ]
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+
 def go_back_stock_keyboard():
     keyboard = [
         [
@@ -70,6 +82,42 @@ def go_back_stock_keyboard():
                 callback_data=callback.CALLBACK_RESIDUE_PARSER
             )
         ],
+        [
+            InlineKeyboardButton(
+                'Вернуться в меню',
+                callback_data=callback.CALLBACK_CANCEL
+            )
+        ],
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+
+def send_again_stock_go_menu_keyboard():
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                'Отправить еще запрос',
+                callback_data=callback.CALLBACK_POSITION_PARSER
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                'Вернуться в меню',
+                callback_data=callback.CALLBACK_CANCEL
+            )
+        ],
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+
+def go_back_menu():
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                'Вернуться в меню',
+                callback_data=callback.CALLBACK_CANCEL
+            )
+        ]
     ]
     return InlineKeyboardMarkup(keyboard)
 
@@ -106,12 +154,6 @@ async def position_parse_keyboard(article: int, query: str):
                     callback_id=callback_update.pk
                 )
             ),
-        ],
-        [
-            InlineKeyboardButton(
-                'Отправить еще запрос',
-                callback_data=callback.CALLBACK_POSITION_PARSER
-            )
         ],
         [
             InlineKeyboardButton(
