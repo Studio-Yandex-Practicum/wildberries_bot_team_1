@@ -1,5 +1,4 @@
 from csv import DictReader
-from ui_constructor.models import ButtonConstructor
 from parser.models import Destination, Storehouse
 from sys import exit
 
@@ -13,16 +12,12 @@ CSV_TABLES = {
     'Storehouse': DictReader(
         open('../data/storehouse.csv', encoding='utf-8')
     ),
-    'ButtonConstructor': DictReader(
-        open('../data/buttons.csv', encoding='utf-8')
-    ),
 }
 
 
 def delete_everything():
     Destination.objects.all().delete()
     Storehouse.objects.all().delete()
-    ButtonConstructor.objects.all().delete()
 
 
 def print_attention():
@@ -54,12 +49,5 @@ class Command(BaseCommand):
                 pk=value['id'],
                 name=value['name'],
                 index=value['index'],
-            )
-        for value in CSV_TABLES['ButtonConstructor']:
-            ButtonConstructor.objects.get_or_create(
-                pk=value['id'],
-                ui_control_id=value['ui_control_id'],
-                button_description=value['button_description'],
-                default_text=value['default_text'],
             )
         print('Данные по умолчанию добавлены в базу данных')
