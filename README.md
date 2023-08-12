@@ -85,8 +85,13 @@ python manage.py migrate --run-syncdb
 ```
 
 Добавить данные в базу данных данные по умолчанию
+- пункты выдачи заказов и склады
 ```
 python manage.py import_data_from_csv
+```
+- текст элементов управления бота
+```
+python manage.py import_ui_data_from_csv
 ```
 
 Запустить сервер на локальной машине:
