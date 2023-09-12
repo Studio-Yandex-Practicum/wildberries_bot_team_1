@@ -1,8 +1,8 @@
-name: wildberries_bot_team_1 workflow
+#name: wildberries_bot_team_1 workflow
 
-on:
-  push:
-    branches: [release]
+#on:
+  #push:
+    #branches: [release]
 
 jobs:
   deploy:
