@@ -1,10 +1,10 @@
-FROM python:3.11-slim-buster
+FROM 3.11.5-slim-bookworm
 
 RUN mkdir /app
 
 COPY requirements.txt /app
 
-RUN apt install mc nano
+RUN apt-get install -y mc nano
 RUN python -m pip install --upgrade pip
 RUN pip3 install -r /app/requirements.txt --no-cache-dir
 
