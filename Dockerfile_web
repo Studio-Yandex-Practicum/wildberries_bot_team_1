@@ -1,4 +1,4 @@
-FROM 3.11.5-slim-bookworm
+FROM python:3.11.5-bookworm
 
 RUN mkdir /app
 
